@@ -1,0 +1,34 @@
+{
+  "name": "tgn-pipeline",
+  "author": "waag",
+  "version": "0.0.1",
+  "description": "Open-source geo-coder & reverse geo-coder",
+  "homepage": "https://github.com/erfgoed-en-locatie/tgn-pipeline",
+  "license": "MIT",
+  "scripts": {
+  },
+  "bin": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/erfgoed-en-locatie/tgn-pipeline.git"
+  },
+  "keywords": [
+    "pelias",
+    "tgn",
+    "getty",
+    "waag",
+    "den",
+    "erfgoed & locatie"
+  ],
+  "bugs": {
+    "url": "https://github.com/erfgoed-en-locatie/tgn-pipeline/issues"
+  },
+  "engines": {
+    "node": ">=0.10.26",
+    "npm": ">=1.4.3"
+  },
+  "dependencies": {
+    "sparql-client": "^0.1.0"
+  }
+}

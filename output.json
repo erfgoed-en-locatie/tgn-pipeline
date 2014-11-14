@@ -1,0 +1,226 @@
+{
+    "http://data.erfgeo.nl/hgt/Place/New_Port/df91fea411e77587512ef315b8a7ca21": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "New Port"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1018697"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.1333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -68.8333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Sint_Nicolaas/c049c35448fcd56a721d8aa18804d1ef": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Sint Nicolaas"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1013003"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.4333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -69.9,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Bushiribana/59d4ed0fbf9f3bdabfa7a584b23c71ec": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Bushiribana"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1013001"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.55,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -69.9667,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Playa/f0bd0e34cc30c587f3320e4bd7b0cc2f": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Playa"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1013002"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.5167,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -70.0333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Oranjestad/7f366dfba82668478b61e2b3aad85eb4": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Oranjestad"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1013002"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.5167,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -70.0333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Hato/5a252a6e34e11d1c677949603a64acc4": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Hato"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1018695"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.1833,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -68.2833,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Sint_Kruis/1b235b57c28bf16bee69e279dd5ad014": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Sint Kruis"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1018700"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.3,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -69.1333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    },
+    "http://data.erfgeo.nl/hgt/Place/Santa_Krus/b2aadc7338264c7b6889fc88a63606cc": {
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+            {
+                "type": "literal",
+                "value": "Santa Krus"
+            }
+        ],
+        "http://purl.org/dc/terms/source": [
+            {
+                "type": "uri",
+                "value": "http://vocab.getty.edu/tgn/1018700"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [
+            {
+                "type": "literal",
+                "value": 12.3,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [
+            {
+                "type": "literal",
+                "value": -69.1333,
+                "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+        ]
+    }
+}

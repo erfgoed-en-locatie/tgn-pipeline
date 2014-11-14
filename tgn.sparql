@@ -1,0 +1,19 @@
+CONSTRUCT {
+	?HGTterm rdfs:label ?PlaceLabelValue;
+		<http://purl.org/dc/terms/source> ?Place ;
+		<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?GeoLong;
+		<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?GeoLat .
+}
+WHERE {
+	?Place a <http://vocab.getty.edu/ontology#AdminPlaceConcept>;
+		<http://vocab.getty.edu/ontology#placeType> <http://vocab.getty.edu/aat/300008347> ;
+		rdfs:label ?PlaceLabelValue ;
+		<http://xmlns.com/foaf/0.1/focus> ?PlaceFocus .
+	?PlaceFocus
+		<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?GeoLong;
+		<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?GeoLat .
+	BIND (bif:regexp_replace(str(?PlaceLabelValue), '[^[:alpha:]]', '_') AS ?TGN_underscore)
+	BIND (iri(CONCAT("http://data.erfgeo.nl/hgt/Place/", ?TGN_underscore, "/", md5(?PlaceLabelValue))) AS ?HGTterm )
+}
+ORDER BY ?PlaceLabelValue
+LIMIT 1000
