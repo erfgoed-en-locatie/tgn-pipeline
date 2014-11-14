@@ -1,19 +1,49 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gvp: <http://vocab.getty.edu/ontology#>
+PREFIX tgn: <http://vocab.getty.edu/tgn/>
+
 CONSTRUCT {
-	?HGTterm rdfs:label ?PlaceLabelValue;
-		<http://purl.org/dc/terms/source> ?Place ;
-		<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?GeoLong;
-		<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?GeoLat .
+  [] rdfs:label ?placeLabel;
+    dc:source ?place ;
+    gvp:term ?termLabel ;
+
+    rdfs:comment ?termComment ;
+    schema:startDate ?termStartDate ;
+    schema:endDate ?termEndDate ;
+    dc:identifier ?termIdentifier ;
+
+    geo:long ?long ;
+    geo:lat ?lat .
 }
 WHERE {
-	?Place a <http://vocab.getty.edu/ontology#AdminPlaceConcept>;
-		<http://vocab.getty.edu/ontology#placeType> <http://vocab.getty.edu/aat/300008347> ;
-		rdfs:label ?PlaceLabelValue ;
-		<http://xmlns.com/foaf/0.1/focus> ?PlaceFocus .
-	?PlaceFocus
-		<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?GeoLong;
-		<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?GeoLat .
-	BIND (bif:regexp_replace(str(?PlaceLabelValue), '[^[:alpha:]]', '_') AS ?TGN_underscore)
-	BIND (iri(CONCAT("http://data.erfgeo.nl/hgt/Place/", ?TGN_underscore, "/", md5(?PlaceLabelValue))) AS ?HGTterm )
+  ?place a gvp:AdminPlaceConcept ;
+
+    # Only retrieves places in the Netherlands:
+    gvp:broaderExtended tgn:7016845 ;
+
+    #tgn:placeType <http://vocab.getty.edu/aat/300008347> ;
+  	skos:prefLabel ?placeLabel ;
+    skosxl:prefLabel|skosxl:altLabel ?altLabel .
+
+  ?altLabel gvp:term ?termLabel .
+
+  OPTIONAL { ?altLabel rdfs:comment ?termComment . }
+  OPTIONAL { ?altLabel schema:startDate ?termStartDate . }
+  OPTIONAL { ?altLabel schema:endDate ?termEndDate . }
+  OPTIONAL { ?altLabel dc:identifier ?termIdentifier . }
+
+  OPTIONAL {
+   ?place foaf:focus ?focus .
+   ?focus geo:long ?long;
+     geo:lat ?lat .
+  }
+
+  FILTER(LANG(?placeLabel) = "nl")
 }
-ORDER BY ?PlaceLabelValue
-LIMIT 1000
+#LIMIT 500
