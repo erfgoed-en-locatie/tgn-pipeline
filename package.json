@@ -29,6 +29,9 @@
     "npm": ">=1.4.3"
   },
   "dependencies": {
-    "sparql-client": "^0.1.0"
+    "sparql-client": "^0.1.0",
+    "xml2js": "^0.4.4",
+    "pg": "^3.6.3",
+    "elasticsearch": "^3.0.0"
   }
 }

@@ -13,7 +13,6 @@ fs.readFile(sparqlFile, 'utf8', function (err, sparqlQuery) {
 
   client.query(sparqlQuery)
     .execute(function(error, results) {
-      //process.stdout.write(util.inspect(results, null, 20, true) + "\n");
       fs.writeFile('tgn.xml', results, null);
     });
 });
