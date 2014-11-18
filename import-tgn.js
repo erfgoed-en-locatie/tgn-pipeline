@@ -4,6 +4,9 @@ var fs = require('fs'),
     pg = require('pg'),
     elasticsearch = require('elasticsearch');
 
+var esHostname = 'erfgoedenlocatie.cloud.tilaa.com:9200';
+//var esHostname = 'localhost:9200';
+
 // Expects BAG to be available in database BAG, with username and password 'postgres'
 var conString = "postgres://postgres:postgres@localhost/bag",
     bagQuery = "SELECT identificatie::int AS id, ST_AsGeoJSON(ST_ForceRHR(ST_Force2D(ST_Transform(geovlak, 4326)))) AS geom FROM woonplaatsactueelbestaand WHERE woonplaatsnaam = $1";
@@ -17,7 +20,7 @@ pgClient.connect(function(err) {
 });
 
 var esClient = new elasticsearch.Client({
-  host: 'localhost:9200'
+  host: esHostname
 });
 
 function closeConnection() {
@@ -69,7 +72,7 @@ function createDocument(element, callback) {
 
   var geometry = getBAGGeometryByName(label, function(id, geometry) {
     if (geometry) {
-      console.log("Found " + label + " in BAG, adding to Elasticsearch...");
+      console.log("Found " + term + " = " + label + " in BAG, adding to Elasticsearch...");
       var now = new Date().toISOString();
       var doc = {
         "uri": "http://data.erfgeo.nl/grs/Place/" + term + "/1",
@@ -117,9 +120,10 @@ function createDocument(element, callback) {
   });
 }
 
-function round_coordinates(str) {
-  return str.replace(/(\d+)\.(\d{6})\d+/g, '$1.$2');
-}
+// TODO: find way to round coordinates without corrupting polygons
+//function round_coordinates(str) {
+//  return str.replace(/(\d+)\.(\d{6})\d+/g, '$1.$2');
+//}
 
 function getBAGGeometryByName(name, callback) {
   // TODO: use pg-query? (https://github.com/brianc/node-pg-query)
@@ -128,7 +132,7 @@ function getBAGGeometryByName(name, callback) {
       callback(null);
     }
     if (result.rows.length > 0) {
-      callback(result.rows[0].id, JSON.parse(round_coordinates(result.rows[0].geom)));
+      callback(result.rows[0].id, JSON.parse(result.rows[0].geom));
     } else {
       callback(null);
     }
