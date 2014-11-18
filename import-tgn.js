@@ -118,7 +118,7 @@ function createDocument(element, callback) {
 }
 
 function round_coordinates(str) {
-  return str.replace(/(\d+)\.(\d{6})\d+/, '$1.$2');
+  return str.replace(/(\d+)\.(\d{6})\d+/g, '$1.$2');
 }
 
 function getBAGGeometryByName(name, callback) {
