@@ -17,8 +17,7 @@ pgClient.connect(function(err) {
 });
 
 var esClient = new elasticsearch.Client({
-  host: 'localhost:9200',
-  log: 'trace'
+  host: 'localhost:9200'
 });
 
 function closeConnection() {
@@ -30,9 +29,11 @@ function parseXML(done) {
   fs.readFile(__dirname + '/tgn.xml', function(err, data) {
     parser.parseString(data, function (err, result) {
       var count = result['rdf:RDF']['rdf:Description'].length;
+      6
       result['rdf:RDF']['rdf:Description'].forEach(function(element, index) {
         createDocument(element, function() {
-          if (index == count - 1) {
+          count--;
+          if (count <= 0) {
             done();
           }
         });
@@ -44,6 +45,8 @@ function parseXML(done) {
 function getElementTagValue(element, tag) {
   if (element[tag] && element[tag].length > 0 && element[tag][0]['_']) {
     return element[tag][0]['_'];
+  } else if (element[tag] && element[tag].length > 0) {
+    return element[tag][0];
   }
   return null;
 }
@@ -66,27 +69,21 @@ function createDocument(element, callback) {
 
   var geometry = getBAGGeometryByName(label, function(id, geometry) {
     if (geometry) {
-      console.log("Found " + label + "in BAG, adding to Elasticsearch...");
-
+      console.log("Found " + label + " in BAG, adding to Elasticsearch...");
+      var now = new Date().toISOString();
       var doc = {
-        "uri": "http://data.erfgeo.nl/grs/Place/Amstelodamum/1",
-        //"date_created": "2014-11-14 12:00:55",
+        "uri": "http://data.erfgeo.nl/grs/Place/" + term + "/1",
+        "date_created": now,
         "source": {
           "name": term,
           "uri": source,
-          //"startDate": 1764,
-          //"endDate": 1894,
           "dataset": "tgn"
-          // "geometry": {
-          //   "type": "Point",
-          //   "coordinates": [4.9040, 52.3702]
-          // }
         },
         "relationship": {
-          //"created": "2014-11-14 14:04:41",
+          "created": now,
           "author": "bert@waag.org",
-          "type": "grs:approximation"
-          //"uri": "http://data.erfgeo.nl/grs/Relationship/Amstelodamum/1"
+          "type": "grs:approximation",
+          "uri": "http://data.erfgeo.nl/grs/Relationship/" + term + "/1"
         },
         "target": {
           "name": label,
@@ -98,12 +95,19 @@ function createDocument(element, callback) {
         }
       };
 
+      if (startDate) {
+        doc.source.startDate = startDate;
+      }
+
+      if (endDate) {
+        doc.source.endDate = endDate;
+      }
+
       esClient.create({
         index: 'pelias',
         type: 'pit',
         body: doc
       }, function (error, response) {
-        console.log(response);
         callback();
       });
     } else {
@@ -113,6 +117,10 @@ function createDocument(element, callback) {
   });
 }
 
+function round_coordinates(str) {
+  return str.replace(/(\d+)\.(\d{6})\d+/, '$1.$2');
+}
+
 function getBAGGeometryByName(name, callback) {
   // TODO: use pg-query? (https://github.com/brianc/node-pg-query)
   pgClient.query(bagQuery.replace("$1", "'" + name.replace("'", "''") + "'"), function(err, result) {
@@ -120,7 +128,7 @@ function getBAGGeometryByName(name, callback) {
       callback(null);
     }
     if (result.rows.length > 0) {
-      callback(result.rows[0].id, JSON.parse(result.rows[0].geom));
+      callback(result.rows[0].id, JSON.parse(round_coordinates(result.rows[0].geom)));
     } else {
       callback(null);
     }
