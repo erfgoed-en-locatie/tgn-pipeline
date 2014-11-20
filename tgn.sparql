@@ -24,10 +24,9 @@ CONSTRUCT {
 WHERE {
   ?place a gvp:AdminPlaceConcept ;
 
-    # Only retrieves places in the Netherlands:
+    # Only retrieves places in the Netherlands
     gvp:broaderExtended tgn:7016845 ;
 
-    #tgn:placeType <http://vocab.getty.edu/aat/300008347> ;
   	skos:prefLabel ?placeLabel ;
     skosxl:prefLabel|skosxl:altLabel ?altLabel .
 
@@ -39,11 +38,10 @@ WHERE {
   OPTIONAL { ?altLabel dc:identifier ?termIdentifier . }
 
   OPTIONAL {
-   ?place foaf:focus ?focus .
-   ?focus geo:long ?long;
-     geo:lat ?lat .
+    ?place foaf:focus ?focus .
+    ?focus geo:long ?long ;
+      geo:lat ?lat .
   }
 
   FILTER(LANG(?placeLabel) = "nl")
 }
-#LIMIT 500
